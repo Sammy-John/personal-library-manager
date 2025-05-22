@@ -7,12 +7,11 @@ namespace app.Repositories.Interfaces
 {
     public interface IBookRepository
     {
-        Task<List<Book>> GetAllSync();
         Task<List<Book>> GetAllAsync();
-        Task AddAsync (Book book);
-        Task UpdateAsync (Book book);
-        Task DeleteAsync (Guid id);
+        Task<Book?> GetByIdAsync(Guid id);
+        Task AddAsync(Book book);
+        Task UpdateAsync(Book book);
+        Task DeleteAsync(Guid id);
         Task SaveChangesAsync();
-    
     }
 }
