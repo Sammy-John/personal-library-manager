@@ -1,24 +1,21 @@
-﻿using System.Text;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using app.Repositories.Json;
+using app.Services;
+using app.ViewModels;
 
-namespace App
+namespace app.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+
+            var dataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "bookData.json");
+            var bookRepo = new JsonBookRepository(dataPath);
+            var bookService = new BookService(bookRepo);
+            DataContext = new MainViewModel(bookService);
         }
     }
 }
