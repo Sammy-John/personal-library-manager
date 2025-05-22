@@ -1,0 +1,145 @@
+/* ========== Root Theme Variables ========== */
+:root {
+  --bg-color: #fefcf6;
+  --text-color: #2b2b2b;
+  --accent-color: #8a5a44; /* warm bookish brown */
+  --muted-color: #7d7d7d;
+  --highlight-bg: #f1ede6;
+  --card-bg: #ffffff;
+  --border-color: #ccc;
+  --font-family: 'Segoe UI', 'Georgia', serif;
+}
+
+/* ========== Base Reset & Layout ========== */
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.app-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ========== Header ========== */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.app-header h1 {
+  font-size: 1.75rem;
+  color: var(--accent-color);
+}
+
+.header-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ========== Filter and Sort Bar ========== */
+.filter-sort-bar {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+select, input[type="text"], input[type="number"], input[type="date"] {
+  padding: 0.4rem;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #744a33;
+}
+
+/* ========== Book List & Cards ========== */
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.book-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 1rem;
+  width: calc(33% - 1rem);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* ========== Book Detail View ========== */
+.book-info {
+  border: 1px solid var(--border-color);
+  background: var(--highlight-bg);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.book-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.book-notes {
+  margin-top: 2rem;
+}
+
+.note-card {
+  background: var(--card-bg);
+  border-left: 4px solid var(--accent-color);
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+/* ========== Book Form ========== */
+.book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.book-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}

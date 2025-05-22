@@ -1,0 +1,42 @@
+@startuml
+title Layered Architecture — Personal Library Manager
+
+package "Presentation Layer\n(WPF Views)" {
+  [MainWindow.xaml]
+  [BookDetailView.xaml]
+}
+
+package "ViewModel Layer\n(MVVM Bindings)" {
+  [MainViewModel]
+  [BookDetailViewModel]
+}
+
+package "Service Layer\n(Business Logic)" {
+  [BookService]
+  [NoteService]
+}
+
+package "Repository Layer\n(Data Abstraction)" {
+  [IBookRepository]
+  [JsonBookRepository]
+}
+
+package "Data/Storage Layer\n(Local JSON or SQLite)" {
+  [JSON File]
+  [SQLite DB (Future)]
+}
+
+[MainWindow.xaml] --> [MainViewModel]
+[BookDetailView.xaml] --> [BookDetailViewModel]
+
+[MainViewModel] --> [BookService]
+[BookDetailViewModel] --> [NoteService]
+
+[BookService] --> [IBookRepository]
+[NoteService] --> [IBookRepository]
+
+[IBookRepository] --> [JsonBookRepository]
+[JsonBookRepository] --> [JSON File]
+[JsonBookRepository] ..> [SQLite DB (Future)] : (planned)
+
+@enduml

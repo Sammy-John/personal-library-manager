@@ -1,0 +1,48 @@
+@startuml
+title Component Diagram — Personal Library Manager
+
+package "UI Layer" {
+  [MainWindow.xaml]
+  [BookDetailView.xaml]
+}
+
+package "ViewModels" {
+  [MainViewModel]
+  [BookDetailViewModel]
+}
+
+package "Services" {
+  [BookService]
+  [NoteService]
+}
+
+package "Repositories" {
+  [IBookRepository]
+  [INoteRepository]
+  [JsonBookRepository]
+  [JsonNoteRepository]
+}
+
+package "Models" {
+  [Book]
+  [Note]
+  [ReadingStatus]
+}
+
+[MainWindow.xaml] --> [MainViewModel]
+[BookDetailView.xaml] --> [BookDetailViewModel]
+
+[MainViewModel] --> [BookService]
+[BookDetailViewModel] --> [NoteService]
+
+[BookService] --> [IBookRepository]
+[NoteService] --> [INoteRepository]
+
+[IBookRepository] <|-- [JsonBookRepository]
+[INoteRepository] <|-- [JsonNoteRepository]
+
+[JsonBookRepository] --> [Book]
+[JsonNoteRepository] --> [Note]
+[Book] --> [Note]
+
+@enduml

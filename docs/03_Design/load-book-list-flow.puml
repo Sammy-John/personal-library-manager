@@ -1,0 +1,23 @@
+@startuml
+title Load Book List Flow — Personal Library Manager
+
+actor User
+
+rectangle "Application Startup\nor Navigation" as App
+rectangle "ViewModel" as VM
+rectangle "BookService" as Service
+rectangle "IBookRepository" as RepoInterface
+database "JsonBookRepository\n(JSON File)" as Repo
+rectangle "View (Book List UI)" as View
+
+User --> App : Starts application
+App --> VM : Initializes view
+VM --> Service : Request all books
+Service --> RepoInterface : GetAll()
+RepoInterface --> Repo : Read from JSON
+Repo --> RepoInterface : Return data
+RepoInterface --> Service : Return books
+Service --> VM : Return books
+VM --> View : Display book list
+
+@enduml

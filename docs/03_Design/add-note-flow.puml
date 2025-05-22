@@ -1,0 +1,18 @@
+@startuml
+title Add Note to Book Flow — Personal Library Manager
+
+actor User
+
+rectangle "View (Book Detail)" as View
+rectangle "ViewModel" as VM
+rectangle "NoteService" as Service
+rectangle "INoteRepository" as RepoInterface
+database "JsonNoteRepository\n(JSON File)" as Repo
+
+User --> View : Clicks "Add Note"
+View --> VM : Triggers note input
+VM --> Service : Submit note content
+Service --> RepoInterface : Save(note)
+RepoInterface --> Repo : Update book with new note
+
+@enduml

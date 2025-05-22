@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Library Manager - Main View</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <h1>📚 My Library</h1>
+      <div class="header-controls">
+        <input type="text" placeholder="Search by title or author" />
+        <button>Add Book</button>
+      </div>
+    </header>
+
+    <!-- Filters and Sort Controls -->
+    <section class="filter-sort-bar">
+      <select name="filter-status">
+        <option value="all">All</option>
+        <option value="not-started">Not Started</option>
+        <option value="reading">Reading</option>
+        <option value="completed">Completed</option>
+      </select>
+
+      <select name="sort-by">
+        <option value="title">Sort by Title</option>
+        <option value="author">Sort by Author</option>
+        <option value="date-added">Sort by Date Added</option>
+      </select>
+    </section>
+
+    <!-- Book List -->
+    <main class="book-list">
+      <div class="book-card">
+        <h2>The Hobbit</h2>
+        <p>by J.R.R. Tolkien</p>
+        <p>Status: Completed</p>
+        <button>View</button>
+      </div>
+
+      <div class="book-card">
+        <h2>Clean Code</h2>
+        <p>by Robert C. Martin</p>
+        <p>Status: Reading</p>
+        <button>View</button>
+      </div>
+
+      <div class="book-card">
+        <h2>Atomic Habits</h2>
+        <p>by James Clear</p>
+        <p>Status: Not Started</p>
+        <button>View</button>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

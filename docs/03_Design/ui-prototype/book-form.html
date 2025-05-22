@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add/Edit Book - Personal Library Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <h1>Add / Edit Book</h1>
+      <button onclick="history.back()">← Cancel</button>
+    </header>
+
+    <!-- Book Form -->
+    <form class="book-form">
+      <label>
+        Title:
+        <input type="text" name="title" value="" placeholder="Enter book title" />
+      </label>
+
+      <label>
+        Author:
+        <input type="text" name="author" value="" placeholder="Enter author name" />
+      </label>
+
+      <label>
+        ISBN:
+        <input type="text" name="isbn" value="" placeholder="ISBN (optional)" />
+      </label>
+
+      <label>
+        Genre:
+        <input type="text" name="genre" value="" placeholder="e.g. Fantasy, History" />
+      </label>
+
+      <label>
+        Reading Status:
+        <select name="status">
+          <option value="not-started">Not Started</option>
+          <option value="reading">Reading</option>
+          <option value="completed">Completed</option>
+        </select>
+      </label>
+
+      <label>
+        Current Page:
+        <input type="number" name="currentPage" value="" min="0" />
+      </label>
+
+      <label>
+        Last Read Date:
+        <input type="date" name="lastRead" />
+      </label>
+
+      <label>
+        Rating:
+        <select name="rating">
+          <option value="">None</option>
+          <option value="1">★☆☆☆☆</option>
+          <option value="2">★★☆☆☆</option>
+          <option value="3">★★★☆☆</option>
+          <option value="4">★★★★☆</option>
+          <option value="5">★★★★★</option>
+        </select>
+      </label>
+
+      <div class="form-actions">
+        <button type="submit">Save</button>
+        <button type="button" onclick="history.back()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

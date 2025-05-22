@@ -1,0 +1,53 @@
+@startuml
+title UML Class Diagram — Personal Library Manager
+
+' ENUM
+enum ReadingStatus {
+  NotStarted
+  Reading
+  Completed
+}
+
+' NOTE
+class Note {
+  +Id: Guid
+  +BookId: Guid
+  +Content: string
+  +CreatedDate: DateTime
+  +IsFavorite: bool
+}
+
+' BOOK
+class Book {
+  +Id: Guid
+  +Title: string
+  +Author: string
+  +ISBN: string
+  +Genre: string
+  +Status: ReadingStatus
+  +Rating: int
+  +CurrentPage: int
+  +LastReadDate: DateTime
+  +Tags: List<string>
+  +Notes: List<Note>
+}
+
+' SCHEDULED READ (planned)
+class ScheduledRead {
+  +Id: Guid
+  +BookId: Guid
+  +PlannedDate: DateTime
+  +Comment: string
+}
+
+' LIBRARY (optional root object for JSON)
+class Library {
+  +Books: List<Book>
+}
+
+' RELATIONSHIPS
+Book "1" --> "0..*" Note : has
+Book "1" --> "0..*" ScheduledRead : (planned)
+Library "1" --> "1..*" Book
+
+@enduml

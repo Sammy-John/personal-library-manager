@@ -1,0 +1,18 @@
+@startuml
+title Add/Edit Book Flow — Personal Library Manager
+
+actor User
+
+rectangle "View (Add/Edit Form)" as View
+rectangle "ViewModel" as VM
+rectangle "BookService" as Service
+rectangle "IBookRepository" as RepoInterface
+database "JsonBookRepository\n(JSON File)" as Repo
+
+User --> View : Inputs book details
+View --> VM : Binds input
+VM --> Service : Submit book object
+Service --> RepoInterface : Save(book)
+RepoInterface --> Repo : Write to JSON file
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+title System Context Diagram — Personal Library Manager
+
+actor "User\n(Reader)" as User
+
+rectangle "Personal Library Manager\n(WPF App)" as App
+rectangle "Local JSON File\n(Book Data)" as JSON
+cloud "Google Books API" as GoogleBooks
+database "SQLite (Future)" as SQLite
+
+User --> App : Uses app locally
+App --> JSON : Read/Write book data
+App ..> GoogleBooks : (Planned) Fetch by ISBN
+App ..> SQLite : (Planned) Migrate storage
+
+@enduml
