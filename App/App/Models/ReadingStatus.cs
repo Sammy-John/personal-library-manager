@@ -1,4 +1,5 @@
-﻿namespace app.Models
+﻿namespace PersonalLibraryApp.Models
+
 {
     public enum ReadingStatus
     {

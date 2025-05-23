@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using app.Models;
-using app.Repositories.Interfaces;
+﻿using PersonalLibraryApp.Models;
+using PersonalLibraryApp.Repositories.Interfaces;
 
-namespace app.Repositories.Json
+namespace PersonalLibraryApp.Repositories.Json
 {
     public class JsonNoteRepository : INoteRepository
     {

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using app.Models;
+﻿using PersonalLibraryApp.Models;
 
-namespace app.Repositories.Interfaces
+namespace PersonalLibraryApp.Repositories.Interfaces
 {
     public interface INoteRepository
     {
-        Task<List<Note>> GetNotesByBookIdAsync (Guid bookId);
+        Task<List<Note>> GetNotesByBookIdAsync(Guid bookId);
         Task AddNoteAsync(Note note);
         Task UpdateNoteAsync(Note note);
         Task DeleteNoteAsync(Guid noteId);

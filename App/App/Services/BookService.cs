@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.DirectoryServices.ActiveDirectory;
-using System.Threading.Tasks;
-using app.Models;
-using app.Repositories.Interfaces;
+﻿using PersonalLibraryApp.Models;
+using PersonalLibraryApp.Repositories.Interfaces;
 
-namespace app.Services
+namespace PersonalLibraryApp.Services
+
 
 {
     public class BookService

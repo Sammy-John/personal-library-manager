@@ -1,10 +1,11 @@
-﻿using System.IO;
+﻿using PersonalLibraryApp.Repositories.Json;
+using PersonalLibraryApp.Services;
+using PersonalLibraryApp.ViewModels;
+using System.IO;
 using System.Windows;
-using app.Repositories.Json;
-using app.Services;
-using app.ViewModels;
 
-namespace app.Views
+
+namespace PersonalLibraryApp.Views
 {
     public partial class MainWindow : Window
     {

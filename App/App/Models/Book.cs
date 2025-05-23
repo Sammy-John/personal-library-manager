@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace PersonalLibraryApp.Models
 
-namespace app.Models
 {
     public class Book
     {
@@ -11,7 +9,7 @@ namespace app.Models
         public string ISBN { get; set; } = string.Empty;
         public string Genre { get; set; } = string.Empty;
         public ReadingStatus Status { get; set; } = ReadingStatus.NotStarted;
-        public int ? Rating { get; set; }
+        public int? Rating { get; set; }
         public int? CurrentPage { get; set; }
         public DateTime? LastReadDate { get; set; }
         public List<string> Tags { get; set; } = new();

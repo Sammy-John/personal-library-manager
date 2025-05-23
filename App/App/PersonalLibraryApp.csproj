@@ -9,12 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <None Remove="Data\bookData.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\bookData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Resources\" />
-    <Folder Include="Services\" />
     <Folder Include="Views\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>

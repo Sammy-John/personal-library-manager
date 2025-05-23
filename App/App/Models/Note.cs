@@ -1,6 +1,5 @@
-﻿using System;
+﻿namespace PersonalLibraryApp.Models
 
-namespace app.Models
 {
     public class Note
     {

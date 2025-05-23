@@ -1,11 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using PersonalLibraryApp.Models;
+using PersonalLibraryApp.Services;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using app.Models;
-using app.Services;
 
-namespace app.ViewModels
+namespace PersonalLibraryApp.ViewModels
+
 {
     public class MainViewModel : INotifyPropertyChanged
     {
@@ -18,6 +18,7 @@ namespace app.ViewModels
             _bookService = bookService;
             _ = LoadBooksAsync();
         }
+
 
         private async Task LoadBooksAsync()
         {

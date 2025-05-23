@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PersonalLibraryApp.Models;
+using PersonalLibraryApp.Repositories.Interfaces;
 using System.IO;
-using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
-using app.Models;
-using app.Repositories.Interfaces;
 
-namespace app.Repositories.Json
+namespace PersonalLibraryApp.Repositories.Json
+
 {
     public class JsonBookRepository : IBookRepository
     {
