@@ -3,9 +3,9 @@ using PersonalLibraryApp.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace PersonalLibraryApp.ViewModels
-
 {
     public class MainViewModel : INotifyPropertyChanged
     {
@@ -19,7 +19,6 @@ namespace PersonalLibraryApp.ViewModels
             _ = LoadBooksAsync();
         }
 
-
         private async Task LoadBooksAsync()
         {
             var books = await _bookService.GetAllBooksAsync();
@@ -27,6 +26,8 @@ namespace PersonalLibraryApp.ViewModels
             foreach (var book in books)
                 Books.Add(book);
         }
+
+        public Task ReloadBooksAsync() => LoadBooksAsync();
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? name = null) =>

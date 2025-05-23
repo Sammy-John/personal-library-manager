@@ -21,7 +21,6 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Resources\" />
-    <Folder Include="Views\" />
   </ItemGroup>
 
 </Project>

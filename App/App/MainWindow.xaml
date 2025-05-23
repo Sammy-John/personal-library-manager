@@ -6,17 +6,35 @@
         xmlns:local="clr-namespace:PersonalLibraryApp.Views"
         mc:Ignorable="d"
         Title="Library" Height="450" Width="800">
+
     <Grid>
-        <ListView ItemsSource="{Binding Books}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Top bar with button -->
+            <RowDefinition Height="*"/>
+            <!-- Main book list -->
+        </Grid.RowDefinitions>
+
+        <!-- Add Book Button -->
+        <Button Content="Add Book" Click="AddBook_Click" Margin="10"
+                HorizontalAlignment="Right" VerticalAlignment="Center" />
+
+        <!-- Book List -->
+        <ListView ItemsSource="{Binding Books}" Grid.Row="1" Margin="10">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
                         <TextBlock Text="{Binding Title}" FontWeight="Bold" />
                         <TextBlock Text="{Binding Author}" />
                         <TextBlock Text="{Binding Status}" />
+                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                            <Button Content="Edit" Click="EditBook_Click" Tag="{Binding}" Margin="0 0 10 0"/>
+                            <Button Content="Delete" Click="DeleteBook_Click" Tag="{Binding}"/>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
+
         </ListView>
     </Grid>
 </Window>
