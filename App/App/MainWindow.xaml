@@ -30,19 +30,21 @@
                         <TextBlock>
                         <Run Text="Page: "/>
                         <Run Text="{Binding CurrentPage}"/>
-                                            </TextBlock>
+                        </TextBlock>
 
-                                            <TextBlock>
+                        <TextBlock>
                         <Run Text="Last Read: "/>
                         <Run Text="{Binding LastReadDate, StringFormat=d}"/>
-                                            </TextBlock>
+                        </TextBlock>
 
                         <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                            <Button Content="View" Click="ViewBook_Click" Tag="{Binding}" Margin="0 0 5 0"/>
                             <Button Content="Edit" Click="EditBook_Click" Tag="{Binding}" Margin="0 0 10 0"/>
                             <Button Content="Delete" Click="DeleteBook_Click" Tag="{Binding}"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
+
             </ListView.ItemTemplate>
 
         </ListView>

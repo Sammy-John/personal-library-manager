@@ -4,14 +4,14 @@ using PersonalLibraryApp.Models;
 using PersonalLibraryApp.Repositories.Json;
 using PersonalLibraryApp.Services;
 using PersonalLibraryApp.ViewModels;
-using PersonalLibraryApp.Views; // Needed for AddBookView
+using PersonalLibraryApp.Views;
 using PersonalLibraryApp.Helpers;
-
 
 namespace PersonalLibraryApp.Views
 {
     public partial class MainWindow : Window
     {
+        private readonly JsonBookRepository _bookRepo;
         private readonly BookService _bookService;
         private readonly MainViewModel _viewModel;
 
@@ -22,14 +22,12 @@ namespace PersonalLibraryApp.Views
                 string solutionRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\.."));
                 string dataPath = Path.Combine(solutionRoot, "Data", "bookData.json");
 
-                
-
                 Directory.CreateDirectory(Path.GetDirectoryName(dataPath)!);
                 if (!File.Exists(dataPath))
                     File.WriteAllText(dataPath, "[]");
 
-                var bookRepo = new JsonBookRepository(dataPath);
-                _bookService = new BookService(bookRepo);
+                _bookRepo = new JsonBookRepository(dataPath);
+                _bookService = new BookService(_bookRepo);
                 _viewModel = new MainViewModel(_bookService);
 
                 InitializeComponent();
@@ -41,10 +39,6 @@ namespace PersonalLibraryApp.Views
                 throw;
             }
         }
-
-
-
-
 
         private async void AddBook_Click(object sender, RoutedEventArgs e)
         {
@@ -95,5 +89,19 @@ namespace PersonalLibraryApp.Views
             }
         }
 
+        private async void ViewBook_Click(object sender, RoutedEventArgs e)
+        {
+            if ((sender as FrameworkElement)?.Tag is Book selectedBook)
+            {
+                var noteRepo = new JsonNoteRepository(_bookRepo); // reuse the repo instance
+                var detailWindow = new BookDetailView(selectedBook, noteRepo) { Owner = this };
+
+                if (detailWindow.ShowDialog() == true)
+                {
+                    await _bookService.UpdateBookAsync(detailWindow.Book); // updates metadata only
+                    await _viewModel.ReloadBooksAsync();
+                }
+            }
+        }
     }
 }
