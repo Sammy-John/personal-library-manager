@@ -9,17 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Data\bookData.json" />
+    <Compile Remove="Data\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="Data\**" />
+    <Page Remove="Data\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Data\bookData.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 

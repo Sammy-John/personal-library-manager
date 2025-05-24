@@ -17,9 +17,13 @@ namespace PersonalLibraryApp.Views
                 TitleBox.Text = existingBook.Title;
                 AuthorBox.Text = existingBook.Author;
                 GenreBox.Text = existingBook.Genre;
+                StatusBox.SelectedIndex = (int)existingBook.Status;
+                CurrentPageBox.Text = existingBook.CurrentPage?.ToString() ?? "";
+                LastReadDatePicker.SelectedDate = existingBook.LastReadDate;
 
                 BookResult = existingBook;
             }
+
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -36,6 +40,15 @@ namespace PersonalLibraryApp.Views
             BookResult.Title = TitleBox.Text;
             BookResult.Author = AuthorBox.Text;
             BookResult.Genre = GenreBox.Text;
+            BookResult.Status = (ReadingStatus)StatusBox.SelectedIndex;
+
+            if (int.TryParse(CurrentPageBox.Text, out int page))
+                BookResult.CurrentPage = page;
+            else
+                BookResult.CurrentPage = null;
+
+            BookResult.LastReadDate = LastReadDatePicker.SelectedDate;
+
 
             this.DialogResult = true;
             this.Close();

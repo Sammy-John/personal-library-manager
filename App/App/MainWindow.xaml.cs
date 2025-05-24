@@ -5,6 +5,8 @@ using PersonalLibraryApp.Repositories.Json;
 using PersonalLibraryApp.Services;
 using PersonalLibraryApp.ViewModels;
 using PersonalLibraryApp.Views; // Needed for AddBookView
+using PersonalLibraryApp.Helpers;
+
 
 namespace PersonalLibraryApp.Views
 {
@@ -15,15 +17,34 @@ namespace PersonalLibraryApp.Views
 
         public MainWindow()
         {
-            InitializeComponent();
+            try
+            {
+                string solutionRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\.."));
+                string dataPath = Path.Combine(solutionRoot, "Data", "bookData.json");
 
-            // Setup data source
-            var dataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "bookData.json");
-            var bookRepo = new JsonBookRepository(dataPath);
-            _bookService = new BookService(bookRepo);
-            _viewModel = new MainViewModel(_bookService);
-            DataContext = _viewModel;
+                
+
+                Directory.CreateDirectory(Path.GetDirectoryName(dataPath)!);
+                if (!File.Exists(dataPath))
+                    File.WriteAllText(dataPath, "[]");
+
+                var bookRepo = new JsonBookRepository(dataPath);
+                _bookService = new BookService(bookRepo);
+                _viewModel = new MainViewModel(_bookService);
+
+                InitializeComponent();
+                DataContext = _viewModel;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Startup Exception:\n{ex.GetType().Name}\n{ex.Message}", "Startup Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
+            }
         }
+
+
+
+
 
         private async void AddBook_Click(object sender, RoutedEventArgs e)
         {

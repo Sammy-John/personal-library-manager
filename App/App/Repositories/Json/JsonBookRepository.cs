@@ -2,6 +2,7 @@
 using PersonalLibraryApp.Repositories.Interfaces;
 using System.IO;
 using System.Text.Json;
+using System.Windows;
 
 namespace PersonalLibraryApp.Repositories.Json
 
@@ -19,12 +20,17 @@ namespace PersonalLibraryApp.Repositories.Json
 
         private void LoadFromFile()
         {
-            if (File.Exists(_filePath))
+            if (!File.Exists(_filePath))
             {
-                string json = File.ReadAllText(_filePath);
-                _books = JsonSerializer.Deserialize<List<Book>>(json) ?? new();
+                File.WriteAllText(_filePath, "[]");
             }
+
+            string json = File.ReadAllText(_filePath);
+            _books = JsonSerializer.Deserialize<List<Book>>(json) ?? new();
+
+           
         }
+
 
         private void SaveToFile()
         {
