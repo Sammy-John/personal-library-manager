@@ -4,49 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonalLibraryApp.Views"
+        xmlns:components="clr-namespace:PersonalLibraryApp.Views.Components"
         mc:Ignorable="d"
-        Title="Library" Height="450" Width="800">
+        Title="Personal Library Manager" Height="600" Width="1000">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <!-- Top bar with button -->
-            <RowDefinition Height="*"/>
-            <!-- Main book list -->
-        </Grid.RowDefinitions>
+    <DockPanel>
+        <!-- Header Section -->
+        <StackPanel DockPanel.Dock="Top" Margin="10">
+            <TextBlock Text="📚 Personal Library Manager" FontSize="24" FontWeight="Bold" Margin="0 0 0 5" />
+            <TextBlock Text="Track your books, manage notes, and monitor your reading progress." FontSize="14"/>
+            <Separator Margin="0 10 0 10"/>
+            <TextBlock Text="Use the filters below to refine your view. Click column headers to sort." 
+                       FontStyle="Italic" Foreground="Gray" Margin="0 0 0 10"/>
 
-        <!-- Add Book Button -->
-        <Button Content="Add Book" Click="AddBook_Click" Margin="10"
-                HorizontalAlignment="Right" VerticalAlignment="Center" />
+            <!-- Add Book Button Row -->
+            <DockPanel Margin="0 5 0 10">
+                <TextBlock Text="Your Book Library" FontSize="18" FontWeight="Bold"
+                           DockPanel.Dock="Left" VerticalAlignment="Center" />
+                <Button Content="+ Add Book" Click="AddBook_Click" DockPanel.Dock="Right"
+                        Padding="10,4" HorizontalAlignment="Right" />
+            </DockPanel>
+        </StackPanel>
 
-        <!-- Book List -->
-        <ListView ItemsSource="{Binding Books}" Grid.Row="1" Margin="10">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="{Binding Title}" FontWeight="Bold" />
-                        <TextBlock Text="{Binding Author}" />
-                        <TextBlock Text="{Binding Status}" />
-                        <TextBlock>
-                        <Run Text="Page: "/>
-                        <Run Text="{Binding CurrentPage}"/>
-                        </TextBlock>
-
-                        <TextBlock>
-                        <Run Text="Last Read: "/>
-                        <Run Text="{Binding LastReadDate, StringFormat=d}"/>
-                        </TextBlock>
-
-                        <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
-                            <Button Content="View" Click="ViewBook_Click" Tag="{Binding}" Margin="0 0 5 0"/>
-                            <Button Content="Edit" Click="EditBook_Click" Tag="{Binding}" Margin="0 0 10 0"/>
-                            <Button Content="Delete" Click="DeleteBook_Click" Tag="{Binding}"/>
-                        </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-
-            </ListView.ItemTemplate>
-
-        </ListView>
-    </Grid>
+        <!-- Main Content -->
+        <Grid Margin="10">
+            <components:BookTableView x:Name="BookTable" />
+        </Grid>
+    </DockPanel>
 </Window>

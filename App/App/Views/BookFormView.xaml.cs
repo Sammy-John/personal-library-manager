@@ -1,6 +1,7 @@
 ﻿// BookFormView.xaml.cs
 using PersonalLibraryApp.Models;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace PersonalLibraryApp.Views
 {
@@ -21,9 +22,13 @@ namespace PersonalLibraryApp.Views
                 CurrentPageBox.Text = existingBook.CurrentPage?.ToString() ?? "";
                 LastReadDatePicker.SelectedDate = existingBook.LastReadDate;
 
+                if (existingBook.Rating.HasValue)
+                    RatingBox.SelectedIndex = existingBook.Rating.Value - 1;
+                else
+                    RatingBox.SelectedIndex = -1;
+
                 BookResult = existingBook;
             }
-
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -49,6 +54,15 @@ namespace PersonalLibraryApp.Views
 
             BookResult.LastReadDate = LastReadDatePicker.SelectedDate;
 
+            if (RatingBox.SelectedItem is ComboBoxItem item &&
+                int.TryParse(item.Content.ToString(), out int rating))
+            {
+                BookResult.Rating = rating;
+            }
+            else
+            {
+                BookResult.Rating = null;
+            }
 
             this.DialogResult = true;
             this.Close();

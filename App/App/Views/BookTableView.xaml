@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="PersonalLibraryApp.Views.Components.BookTableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="800">
+
+    <Grid>
+        <StackPanel>
+            <!-- Filter Controls -->
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Text="Genre:" VerticalAlignment="Center" Margin="0 0 5 0" />
+                <ComboBox x:Name="GenreFilter" Width="150" SelectionChanged="GenreFilter_SelectionChanged" />
+
+                <TextBlock Text="Status:" VerticalAlignment="Center" Margin="20 0 5 0" />
+                <ComboBox x:Name="StatusFilter" Width="120" SelectionChanged="StatusFilter_SelectionChanged" />
+
+                <TextBlock Text="Rating" VerticalAlignment="Center" Margin="20 0 5 0" />
+                <ComboBox x:Name="RatingFilter" Width="60" SelectionChanged="RatingFilter_SelectionChanged">
+                    <ComboBoxItem Content="5" />
+                    <ComboBoxItem Content="4" />
+                    <ComboBoxItem Content="3" />
+                    <ComboBoxItem Content="2" />
+                    <ComboBoxItem Content="1" />
+                </ComboBox>
+
+                <Button Content="Clear Filters" Click="ClearFilters_Click" Margin="20 0 0 0" Padding="10,2" />
+                <Button Content="Clear Sorting" Click="ClearSorting_Click" Margin="10 0 0 0" Padding="10,2" />
+            </StackPanel>
+
+            <!-- Book Table -->
+            <ListView x:Name="BookListView" Margin="0">
+                <ListView.View>
+                    <GridView x:Name="BookGridView">
+                        <GridViewColumn x:Name="TitleColumn" Header="Title ⟳" Width="200" DisplayMemberBinding="{Binding Title}"/>
+                        <GridViewColumn x:Name="AuthorColumn" Header="Author ⟳" Width="150" DisplayMemberBinding="{Binding Author}"/>
+                        <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" Width="100" />
+                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100" />
+                        <GridViewColumn x:Name="RatingColumn" Header="Rating ⟳" Width="60" DisplayMemberBinding="{Binding Rating}"/>
+                        <GridViewColumn Header="Current Page" DisplayMemberBinding="{Binding CurrentPage}" Width="100" />
+                        <GridViewColumn x:Name="LastReadColumn" Header="Last Read ⟳" Width="100" DisplayMemberBinding="{Binding LastReadDate, StringFormat=d}"/>
+                        <GridViewColumn Header="Actions" Width="180">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button Content="View" Click="ViewBook_Click" Tag="{Binding}" Margin="0 0 5 0" />
+                                        <Button Content="Edit" Click="EditBook_Click" Tag="{Binding}" Margin="0 0 5 0" />
+                                        <Button Content="Delete" Click="DeleteBook_Click" Tag="{Binding}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</UserControl>

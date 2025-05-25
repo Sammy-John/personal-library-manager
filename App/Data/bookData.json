@@ -3,10 +3,10 @@
     "Id": "a1d5b9b8-e4fc-4b87-a73e-b46c153c42b7",
     "Title": "The Hobbit",
     "Author": "J.R.R. Tolkien",
-    "ISBN": "9780007525492",
+    "ISBN": "",
     "Genre": "Fantasy",
     "Status": 2,
-    "Rating": 5,
+    "Rating": 2,
     "CurrentPage": 310,
     "LastReadDate": "2024-05-01T00:00:00",
     "Tags": [
@@ -29,5 +29,18 @@
         "IsFavorite": false
       }
     ]
+  },
+  {
+    "Id": "2519b071-0920-4752-8979-556781650078",
+    "Title": "My Test Book",
+    "Author": "Me",
+    "ISBN": "",
+    "Genre": "Horror",
+    "Status": 2,
+    "Rating": 5,
+    "CurrentPage": null,
+    "LastReadDate": null,
+    "Tags": [],
+    "Notes": []
   }
 ]

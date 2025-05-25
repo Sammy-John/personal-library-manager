@@ -15,6 +15,15 @@
             <TextBox x:Name="AuthorBox" Margin="0 5"/>
             <TextBlock Text="Genre" />
             <TextBox x:Name="GenreBox" Margin="0 5"/>
+            <TextBlock Text="Rating (1–5)" />
+            <ComboBox x:Name="RatingBox" Margin="0 5">
+                <ComboBoxItem Content="1" />
+                <ComboBoxItem Content="2" />
+                <ComboBoxItem Content="3" />
+                <ComboBoxItem Content="4" />
+                <ComboBoxItem Content="5" />
+            </ComboBox>
+
             <TextBlock Text="Reading Status" />
             <ComboBox x:Name="StatusBox" SelectedIndex="0" Margin="0 5">
                 <ComboBoxItem Content="Not Started" />
