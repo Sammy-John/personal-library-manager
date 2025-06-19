@@ -4,20 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="800">
+             d:DesignHeight="400" d:DesignWidth="1000"
+             Background="{DynamicResource SectionBgBrush}"
+             FontFamily="{DynamicResource AppFont}">
 
-    <Grid>
-        <StackPanel>
-            <!-- Filter Controls -->
-            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+    <Grid Margin="0 0 0 10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Filters -->
+            <RowDefinition Height="*" />
+            <!-- Table -->
+        </Grid.RowDefinitions>
+
+        <!-- Filter Controls -->
+        <Border Background="{DynamicResource HighlightBgBrush}"
+                BorderBrush="{DynamicResource InputBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4"
+                Margin="0 0 0 10"
+                Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Margin="10">
                 <TextBlock Text="Genre:" VerticalAlignment="Center" Margin="0 0 5 0" />
-                <ComboBox x:Name="GenreFilter" Width="150" SelectionChanged="GenreFilter_SelectionChanged" />
+                <ComboBox x:Name="GenreFilter" Width="150" SelectionChanged="GenreFilter_SelectionChanged" Margin="0 0 10 0" />
 
-                <TextBlock Text="Status:" VerticalAlignment="Center" Margin="20 0 5 0" />
-                <ComboBox x:Name="StatusFilter" Width="120" SelectionChanged="StatusFilter_SelectionChanged" />
+                <TextBlock Text="Status:" VerticalAlignment="Center" Margin="0 0 5 0" />
+                <ComboBox x:Name="StatusFilter" Width="120" SelectionChanged="StatusFilter_SelectionChanged" Margin="0 0 10 0" />
 
-                <TextBlock Text="Rating" VerticalAlignment="Center" Margin="20 0 5 0" />
-                <ComboBox x:Name="RatingFilter" Width="60" SelectionChanged="RatingFilter_SelectionChanged">
+                <TextBlock Text="Rating:" VerticalAlignment="Center" Margin="0 0 5 0" />
+                <ComboBox x:Name="RatingFilter" Width="60" SelectionChanged="RatingFilter_SelectionChanged" Margin="0 0 10 0">
                     <ComboBoxItem Content="5" />
                     <ComboBoxItem Content="4" />
                     <ComboBoxItem Content="3" />
@@ -25,35 +39,46 @@
                     <ComboBoxItem Content="1" />
                 </ComboBox>
 
-                <Button Content="Clear Filters" Click="ClearFilters_Click" Margin="20 0 0 0" Padding="10,2" />
-                <Button Content="Clear Sorting" Click="ClearSorting_Click" Margin="10 0 0 0" Padding="10,2" />
+                <Button Content="Clear Filters" Click="ClearFilters_Click" Margin="0 0 10 0" />
+                <Button Content="Clear Sorting" Click="ClearSorting_Click" />
             </StackPanel>
+        </Border>
 
-            <!-- Book Table -->
-            <ListView x:Name="BookListView" Margin="0">
-                <ListView.View>
-                    <GridView x:Name="BookGridView">
-                        <GridViewColumn x:Name="TitleColumn" Header="Title ⟳" Width="200" DisplayMemberBinding="{Binding Title}"/>
-                        <GridViewColumn x:Name="AuthorColumn" Header="Author ⟳" Width="150" DisplayMemberBinding="{Binding Author}"/>
-                        <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" Width="100" />
-                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100" />
-                        <GridViewColumn x:Name="RatingColumn" Header="Rating ⟳" Width="60" DisplayMemberBinding="{Binding Rating}"/>
-                        <GridViewColumn Header="Current Page" DisplayMemberBinding="{Binding CurrentPage}" Width="100" />
-                        <GridViewColumn x:Name="LastReadColumn" Header="Last Read ⟳" Width="100" DisplayMemberBinding="{Binding LastReadDate, StringFormat=d}"/>
-                        <GridViewColumn Header="Actions" Width="180">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button Content="View" Click="ViewBook_Click" Tag="{Binding}" Margin="0 0 5 0" />
-                                        <Button Content="Edit" Click="EditBook_Click" Tag="{Binding}" Margin="0 0 5 0" />
-                                        <Button Content="Delete" Click="DeleteBook_Click" Tag="{Binding}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </StackPanel>
+        <!-- Book Table with Scroll -->
+        <Border Grid.Row="1"
+                Background="White"
+                BorderBrush="{DynamicResource InputBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4">
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          MaxHeight="400"
+                          Padding="0">
+                <ListView x:Name="BookListView"
+                          BorderThickness="0">
+                    <ListView.View>
+                        <GridView x:Name="BookGridView">
+                            <GridViewColumn x:Name="TitleColumn" Header="Title ⟳" Width="200" DisplayMemberBinding="{Binding Title}" />
+                            <GridViewColumn x:Name="AuthorColumn" Header="Author ⟳" Width="150" DisplayMemberBinding="{Binding Author}" />
+                            <GridViewColumn Header="Genre" Width="100" DisplayMemberBinding="{Binding Genre}" />
+                            <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding Status}" />
+                            <GridViewColumn x:Name="RatingColumn" Header="Rating ⟳" Width="60" DisplayMemberBinding="{Binding Rating}" />
+                            <GridViewColumn Header="Current Page" Width="100" DisplayMemberBinding="{Binding CurrentPage}" />
+                            <GridViewColumn x:Name="LastReadColumn" Header="Last Read ⟳" Width="100" DisplayMemberBinding="{Binding LastReadDate, StringFormat=d}" />
+                            <GridViewColumn Header="Actions" Width="180">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <Button Content="View" Click="ViewBook_Click" Tag="{Binding}" Margin="0 0 5 0" />
+                                            <Button Content="Edit" Click="EditBook_Click" Tag="{Binding}" Margin="0 0 5 0" />
+                                            <Button Content="Delete" Click="DeleteBook_Click" Tag="{Binding}" Style="{StaticResource DangerButton}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+        </Border>
     </Grid>
 </UserControl>
