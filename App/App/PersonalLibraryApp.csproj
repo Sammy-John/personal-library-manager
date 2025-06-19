@@ -10,13 +10,13 @@
 
   <ItemGroup>
     <Compile Remove="Data\**" />
+    <Compile Remove="Resources\**" />
     <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="Resources\**" />
     <None Remove="Data\**" />
+    <None Remove="Resources\**" />
     <Page Remove="Data\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\" />
+    <Page Remove="Resources\**" />
   </ItemGroup>
 
 </Project>
